@@ -1,0 +1,17 @@
+# IDE
+.idea/
+*.iml
+
+# maven
+target/
+
+# tomcat
+work/
+Servers/
+*.log
+
+# Eclipse #
+.settings/
+.metadata/
+.classpath
+.project

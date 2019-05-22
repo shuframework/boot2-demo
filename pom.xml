@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.shuframework</groupId>
+        <artifactId>shu-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.shuframework</groupId>
+    <artifactId>framework-common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <!--这样处理是报错的，找不到version-->
+    <!--<version>${shuframework-snapshot.version}</version>-->
+
+    <modules>
+        <module>common-third-tools</module>
+        <module>common-starter</module>
+        <module>common-core</module>
+    </modules>
+
+
+    <!--<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <shuframework-release.version>1.0</shuframework-release.version>
+        <shuframework-snapshot.version>1.0-SNAPSHOT</shuframework-snapshot.version>
+    </properties>-->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.shuframework</groupId>
+            <artifactId>common-base</artifactId>
+            <!--<version>1.0</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>src</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

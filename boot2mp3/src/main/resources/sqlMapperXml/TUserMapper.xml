@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tt.bcim.im.mapper.TUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tt.bcim.im.model.TUser">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="nickname" property="nickname" />
+        <result column="password" property="password" />
+        <result column="sex" property="sex" />
+        <result column="portrait" property="portrait" />
+        <result column="phone" property="phone" />
+        <result column="phone_old" property="phoneOld" />
+        <result column="email" property="email" />
+        <result column="address" property="address" />
+        <result column="use_type" property="useType" />
+        <result column="remarks" property="remarks" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="enabled" property="enabled" />
+        <result column="province_name" property="provinceName" />
+        <result column="city_name" property="cityName" />
+        <result column="signature" property="signature" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, username, nickname, password, sex, portrait, phone, phone_old, email, address, use_type, remarks, create_time, update_time, enabled, province_name, city_name, signature
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Dynamic_Where_Query">
+        <where>
+            <if test="beginCreateTime != null ">
+                and create_time <![CDATA[ >= ]]> #{beginCreateTime}
+            </if>
+            <if test="endCreateTime != null ">
+                and create_time <![CDATA[ <= ]]> #{endCreateTime}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null and userId != '' ">
+                and user_id = #{userId}
+            </if>
+            <if test="username != null and username != '' ">
+                and username = #{username}
+            </if>
+            <if test="nickname != null and nickname != '' ">
+                and nickname = #{nickname}
+            </if>
+            <if test="password != null and password != '' ">
+                and password = #{password}
+            </if>
+            <if test="sex != null and sex != '' ">
+                and sex = #{sex}
+            </if>
+            <if test="portrait != null and portrait != '' ">
+                and portrait = #{portrait}
+            </if>
+            <if test="phone != null and phone != '' ">
+                and phone = #{phone}
+            </if>
+            <if test="phoneOld != null and phoneOld != '' ">
+                and phone_old = #{phoneOld}
+            </if>
+            <if test="email != null and email != '' ">
+                and email = #{email}
+            </if>
+            <if test="address != null and address != '' ">
+                and address = #{address}
+            </if>
+            <if test="useType != null and useType != '' ">
+                and use_type = #{useType}
+            </if>
+            <if test="remarks != null and remarks != '' ">
+                and remarks = #{remarks}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="enabled != null and enabled != '' ">
+                and enabled = #{enabled}
+            </if>
+            <if test="provinceName != null and provinceName != '' ">
+                and province_name = #{provinceName}
+            </if>
+            <if test="cityName != null and cityName != '' ">
+                and city_name = #{cityName}
+            </if>
+            <if test="signature != null and signature != '' ">
+                and signature = #{signature}
+            </if>
+        </where>
+    </sql>
+
+    <!-- 查询 -->
+    <select id="selectPageList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+        <include refid="Dynamic_Where_Query" />
+    </select>
+
+</mapper>
