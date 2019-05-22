@@ -1,9 +1,10 @@
-package com.tt.bcim.im.mapper;
+package com.shuframework.boot2.mp3.im.mapper;
 
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
-import com.tt.bcim.im.model.TUser;
-import com.tt.bcim.im.query.TUserDTO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.shuframework.boot2.mp3.im.model.TUser;
+import com.shuframework.boot2.mp3.im.query.TUserDTO;
+
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public interface TUserMapper extends BaseMapper<TUser> {
 
-    List<TUser> selectPageList(Pagination page, TUserDTO tUserDTO);
+    List<TUser> selectPageList(Page page, TUserDTO tUserDTO);
 
 }
 

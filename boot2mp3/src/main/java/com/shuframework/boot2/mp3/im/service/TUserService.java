@@ -1,9 +1,9 @@
-package com.tt.bcim.im.service;
+package com.shuframework.boot2.mp3.im.service;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.tt.bcim.im.model.TUser;
-import com.tt.bcim.im.query.TUserDTO;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.shuframework.boot2.mp3.im.model.TUser;
+import com.shuframework.boot2.mp3.im.query.TUserDTO;
 
 /**
  * <p>

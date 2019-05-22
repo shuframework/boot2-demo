@@ -1,11 +1,11 @@
-package com.tt.bcim.im.service.impl;
+package com.shuframework.boot2.mp3.im.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.tt.bcim.im.model.TUser;
-import com.tt.bcim.im.query.TUserDTO;
-import com.tt.bcim.im.mapper.TUserMapper;
-import com.tt.bcim.im.service.TUserService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.shuframework.boot2.mp3.im.mapper.TUserMapper;
+import com.shuframework.boot2.mp3.im.model.TUser;
+import com.shuframework.boot2.mp3.im.query.TUserDTO;
+import com.shuframework.boot2.mp3.im.service.TUserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

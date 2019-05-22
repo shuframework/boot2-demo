@@ -8,10 +8,13 @@ target/
 # tomcat
 work/
 Servers/
+/log/
 *.log
+*.gz
 
 # Eclipse #
 .settings/
 .metadata/
 .classpath
 .project
+/log/

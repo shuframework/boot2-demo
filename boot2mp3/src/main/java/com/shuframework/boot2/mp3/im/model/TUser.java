@@ -1,4 +1,4 @@
-package com.tt.bcim.im.model;
+package com.shuframework.boot2.mp3.im.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

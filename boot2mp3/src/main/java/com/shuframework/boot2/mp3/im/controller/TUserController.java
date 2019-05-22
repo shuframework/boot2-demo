@@ -1,17 +1,16 @@
-package com.tt.bcim.im.controller;
+package com.shuframework.boot2.mp3.im.controller;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.tt.bcim.im.model.TUser;
-import com.tt.bcim.im.query.TUserDTO;
-import com.tt.bcim.im.service.TUserService;
-import com.tt.bcim.commonbase.enums.FailureEnum;
-import com.tt.bcim.commonbase.result.Result;
-import com.tt.bcim.commonbase.result.ResultUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.shuframework.boot2.mp3.im.model.TUser;
+import com.shuframework.boot2.mp3.im.query.TUserDTO;
+import com.shuframework.boot2.mp3.im.service.TUserService;
+import com.shuframework.commonbase.enums.FailureEnum;
+import com.shuframework.commonbase.result.Result;
+import com.shuframework.commonbase.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,7 +48,7 @@ public class TUserController {
      */
     @RequestMapping("/detail")
     public Result detail(@RequestParam("id") Long id){
-        TUser tUser = tUserService.selectById(id);
+        TUser tUser = tUserService.getById(id);
         if(tUser == null){
             return ResultUtil.failure(FailureEnum.NOTEXIST_FAILURE);
         }
@@ -61,7 +60,7 @@ public class TUserController {
      */
     @PostMapping(value = "/insert")
     public Result insert(@RequestBody TUser tUser){
-        boolean flag = tUserService.insert(tUser);
+        boolean flag = tUserService.save(tUser);
         if(flag){
             return ResultUtil.successOfInsert(tUser);
         }
@@ -73,7 +72,7 @@ public class TUserController {
      */
     @PostMapping(value = "/update")
     public Result update(@RequestBody TUser tUser){
-        boolean isOk = tUserService.updateAllColumnById(tUser);
+        boolean isOk = tUserService.updateById(tUser);
         if(isOk){
             return ResultUtil.successOfUpdate(tUser);
         }
@@ -85,7 +84,7 @@ public class TUserController {
      */
     @RequestMapping("/delete")
     public Result delete(@RequestParam("ids") List<Long> ids){
-        boolean isOk = tUserService.deleteBatchIds(ids);
+        boolean isOk = tUserService.removeByIds(ids);
         if(isOk){
             return ResultUtil.successOfDelete(ids);
         }

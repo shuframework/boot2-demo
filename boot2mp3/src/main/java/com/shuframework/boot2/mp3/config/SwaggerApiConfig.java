@@ -1,4 +1,4 @@
-package com.tt.bcim.config;
+package com.shuframework.boot2.mp3.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
@@ -11,14 +11,14 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**  
-* 描述：swagger2配置类 
-* 访问地址是 http://localhost:8080/swagger-ui.html
-*/  
+/**
+ * 描述：swagger2配置类
+ * 访问地址是 http://localhost:8080/swagger-ui.html
+ */
 @EnableSwagger2
 @Configuration
 public class SwaggerApiConfig {
-      
+
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -28,12 +28,12 @@ public class SwaggerApiConfig {
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
 //                .apis(RequestHandlerSelectors.basePackage("com.tt.bcim"))
                 .paths(PathSelectors.any())
-                .build();    
+                .build();
     }
-    
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("bcim-api接口")
+                .title("项目api接口")
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .termsOfServiceUrl("")

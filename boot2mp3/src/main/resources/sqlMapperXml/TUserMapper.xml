@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tt.bcim.im.mapper.TUserMapper">
+<mapper namespace="com.shuframework.boot2.mp3.im.mapper.TUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.tt.bcim.im.model.TUser">
+    <resultMap id="BaseResultMap" type="com.shuframework.boot2.mp3.im.model.TUser">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="username" property="username" />

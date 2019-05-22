@@ -1,13 +1,12 @@
-package com.tt.bcim.im.query;
+package com.shuframework.boot2.mp3.im.query;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import com.tt.bcim.commonbiz.BaseDTO;
-
+import com.shuframework.commoncore.base.BaseDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -74,8 +73,8 @@ public class TUserDTO extends BaseDTO implements Serializable {
     /** 省名称 */
     private String provinceName;
 
-    /** 市名称 */
-    private String cityName;
+//    /** 市名称 */
+//    private String cityName;
 
     /** 个性签名 */
     private String signature;
