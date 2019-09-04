@@ -45,18 +45,9 @@ public class MybatisGenerator {
         String[] tables1 = {"t_user"};
         generatorJava(author, moduleName1, tables1);
 
-//        String moduleName = "admin";
-//        String[] tables = {"sys_dictionary","sys_log","sys_menu","sys_role","sys_role_menu","sys_user","sys_user_role"};
-//        generatorJava(author, moduleName, tables);
-
-//        // 转换输出, 去除velocity代码缩进的空格符
-//        ve.evaluate(context, writer, "", template.replaceAll(
-//                "[ ]*(#if|#else|#elseif|#end|#set|#foreach)", "$1"));
     }
 
     private static void generatorJava(String author, String moduleName, String... tables) {
-        /* 获取 JDBC 配置文件 */
-        Properties props = getProperties();
         AutoGenerator mpg = new AutoGenerator();
 
         String outputDir = SystemUtil.USER_DIR + "/" + "src/main/java" + "/";
@@ -78,6 +69,8 @@ public class MybatisGenerator {
         gc.setControllerName("%sController");
         mpg.setGlobalConfig(gc);
 
+        /* 获取 JDBC 配置文件 */
+        Properties props = getProperties();
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
@@ -91,7 +84,7 @@ public class MybatisGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(moduleName);  //所属模块
-        pc.setParent("com.tt.bcim"); // 自定义包路径
+        pc.setParent("com.shuframework.boot2.mp3"); // 自定义包路径
         pc.setController("controller"); // 这里是控制器包名，默认 web
         pc.setEntity("model");
         pc.setXml("sqlMapperXml");
@@ -103,16 +96,9 @@ public class MybatisGenerator {
         strategy.setRestControllerStyle(true);//开启rest
 //         strategy.setCapitalMode(true);// 全局大写命名
 //         strategy.setDbColumnUnderline(true);//全局下划线命名
-//		strategy.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
+		strategy.setTablePrefix(new String[] { "t_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setInclude(tables); // 需要生成的表
-        // strategy.setExclude(new String[]{"test"}); // 排除生成的表
-        // 自定义实体父类
-        // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
-        // 自定义实体，公共字段
-        // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
-        // 自定义 mapper 父类
-        // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
         // 自定义 service 父类
         // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
         // 自定义 service 实现类父类

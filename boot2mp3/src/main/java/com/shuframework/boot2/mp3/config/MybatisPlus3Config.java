@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
  * mp3的配置
  * @author shuheng
  */
-@Configuration
-@MapperScan("com.shuframework.boot2.mp3.**.mapper")
+//@Configuration
+//@MapperScan("com.shuframework.boot2.mp3.**.mapper")
 // 扫描dao层接口
 public class MybatisPlus3Config {
 

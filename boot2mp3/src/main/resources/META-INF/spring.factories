@@ -1,0 +1,3 @@
+# 多个用逗号隔开 \表示 一行的连接
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.shuframework.boot2.mystart.SayHelloAutoConfigration
