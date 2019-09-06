@@ -27,21 +27,26 @@ public class BookController {
         return bookInfoService.save(bookInfo);
     }
 
-    @GetMapping("/searchContent")
-    public List<BookInfo> search(@RequestParam(value = "searchContent") String searchContent) {
-        return bookInfoService.search(searchContent);
+    @GetMapping("/getById")
+    public BookInfo getById(@RequestParam(value = "code") String code) {
+        return bookInfoService.get(code);
     }
 
-    @GetMapping("/search")
-    public List<BookInfo> search4Page(@RequestParam(value = "pageIndex") Integer pageIndex,
-                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                 @RequestParam(value = "searchContent") String searchContent) {
-        return bookInfoService.search4Page(pageIndex, pageSize, searchContent);
-    }
-
-    @GetMapping("/searchByWeight")
-    public List<BookInfo> searchByWeight(@RequestParam(value = "searchContent") String searchContent) {
-        return bookInfoService.searchByWeight(searchContent);
-    }
+//    @GetMapping("/searchContent")
+//    public List<BookInfo> search(@RequestParam(value = "searchContent") String searchContent) {
+//        return bookInfoService.search(searchContent);
+//    }
+//
+//    @GetMapping("/search")
+//    public List<BookInfo> search4Page(@RequestParam(value = "pageIndex") Integer pageIndex,
+//                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
+//                                 @RequestParam(value = "searchContent") String searchContent) {
+//        return bookInfoService.search4Page(pageIndex, pageSize, searchContent);
+//    }
+//
+//    @GetMapping("/searchByWeight")
+//    public List<BookInfo> searchByWeight(@RequestParam(value = "searchContent") String searchContent) {
+//        return bookInfoService.searchByWeight(searchContent);
+//    }
 
 }

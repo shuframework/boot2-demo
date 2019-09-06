@@ -12,27 +12,30 @@ public interface BookInfoService {
     //相当于 insert和update
     boolean save(BookInfo bookInfo);
 
-    /**
-     * 根据关键字进行全文搜索
-     * @param searchContent
-     * @return
-     */
-    List<BookInfo> search(String searchContent);
+    //根据es的ID查询
+    BookInfo get(String code);
 
-    /**
-     * 根据关键词权重进行查询
-     * @param searchContent
-     * @return
-     */
-    List<BookInfo> searchByWeight(String searchContent);
-
-    /**
-     * 根据关键字进行全文搜索 并分页
-     * @param pageIndex
-     * @param pageSize
-     * @param searchContent
-     * @return
-     */
-    List<BookInfo> search4Page(Integer pageIndex, Integer pageSize, String searchContent);
+//    /**
+//     * 根据关键字进行全文搜索
+//     * @param searchContent
+//     * @return
+//     */
+//    List<BookInfo> search(String searchContent);
+//
+//    /**
+//     * 根据关键词权重进行查询
+//     * @param searchContent
+//     * @return
+//     */
+//    List<BookInfo> searchByWeight(String searchContent);
+//
+//    /**
+//     * 根据关键字进行全文搜索 并分页
+//     * @param pageIndex
+//     * @param pageSize
+//     * @param searchContent
+//     * @return
+//     */
+//    List<BookInfo> search4Page(Integer pageIndex, Integer pageSize, String searchContent);
 
 }

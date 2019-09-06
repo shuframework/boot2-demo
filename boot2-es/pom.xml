@@ -13,6 +13,8 @@
 
     <properties>
         <elasticsearch.version>7.3.1</elasticsearch.version>
+        <!--<elasticsearch.version>6.8.2</elasticsearch.version>-->
+        <!--<elasticsearch.version>6.2.4</elasticsearch.version>-->
     </properties>
 
 
@@ -30,9 +32,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-elasticsearch</artifactId>
-            <version>3.1.9.RELEASE</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
         </dependency>
 
     </dependencies>
