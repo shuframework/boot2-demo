@@ -3,6 +3,8 @@ package com.shuframework.boot2.esclient.config;
 import com.alibaba.fastjson.JSON;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.admin.indices.alias.Alias;
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BackoffPolicy;
 import org.elasticsearch.action.bulk.BulkProcessor;
@@ -15,10 +17,8 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
@@ -75,7 +75,7 @@ public class EsRestClient {
             BulkProcessor.Builder builder = BulkProcessor.builder(restHighLevelClient::bulkAsync, listener);
          */
         BulkProcessor.Builder builder = BulkProcessor.builder((request, bulkListener) ->
-                restHighLevelClient.bulkAsync(request, RequestOptions.DEFAULT, bulkListener), listener);
+                restHighLevelClient.bulkAsync(request, bulkListener), listener);
         builder.setBulkActions(1000);
         builder.setBulkSize(new ByteSizeValue(1L, ByteSizeUnit.MB));
         builder.setConcurrentRequests(0);
@@ -104,9 +104,13 @@ public class EsRestClient {
     public boolean createIndex(String index, Map<String, Object> jsonMap) {
         CreateIndexRequest request = new CreateIndexRequest(index);
         request.alias(new Alias(index + "alias"));
-        request.mapping(jsonMap);
+        request.settings(Settings.builder()
+                .put("index.number_of_shards", 3)
+                .put("index.number_of_replicas", 2)
+        );
+        request.mapping(DEFAULT_TYPE, jsonMap);
         try {
-            CreateIndexResponse response = restHighLevelClient.indices().create(request, RequestOptions.DEFAULT);
+            CreateIndexResponse response = restHighLevelClient.indices().create(request);
             System.out.println(response.isAcknowledged());
             return true;
         } catch (IOException e) {
@@ -121,7 +125,7 @@ public class EsRestClient {
         DeleteIndexRequest request = new DeleteIndexRequest(index);
         request.indicesOptions(IndicesOptions.lenientExpandOpen());
         try {
-            AcknowledgedResponse response = restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);
+            AcknowledgedResponse response = restHighLevelClient.indices().delete(request);
             System.out.println(response.toString());
             return true;
         } catch (IOException e) {
@@ -131,7 +135,7 @@ public class EsRestClient {
     }
 
     public boolean insert(String index, String id, Map<String, Object> map) {
-        IndexRequest request = new IndexRequest(index);
+        IndexRequest request = new IndexRequest(index, DEFAULT_TYPE);
         request.id(id).source(map, XContentType.JSON);
         insert(request);
         return true;
@@ -139,7 +143,7 @@ public class EsRestClient {
 
     // 同步新增
     public boolean insert(String index, String id, String jsonString) {
-        IndexRequest request = new IndexRequest(index);
+        IndexRequest request = new IndexRequest(index, DEFAULT_TYPE);
         request.id(id).source(jsonString, XContentType.JSON);
 //        //与上面等效, 建议手动指定 即用上面的方式
 //        request.source(jsonString);
@@ -155,7 +159,7 @@ public class EsRestClient {
         indexRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
 
         try {
-            IndexResponse response = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+            IndexResponse response = restHighLevelClient.index(indexRequest);
             if(response != null) {
 //                long version = response.getVersion();
                 logger.info("sync put response:{}", response.toString());
@@ -167,7 +171,7 @@ public class EsRestClient {
 
     // 异步新增
     public boolean insertAsync(String index, String id, String jsonString) {
-        IndexRequest indexRequest = new IndexRequest(index);
+        IndexRequest indexRequest = new IndexRequest(index, DEFAULT_TYPE);
         indexRequest.id(id).source(jsonString, XContentType.JSON);
         // 添加到批量对象里 会自动处理
         bulkProcessor.add(indexRequest);
@@ -189,7 +193,7 @@ public class EsRestClient {
         DeleteIndexRequest request = new DeleteIndexRequest(index);
 
         try {
-            AcknowledgedResponse response = restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);
+            AcknowledgedResponse response = restHighLevelClient.indices().delete(request);
             System.out.println(response.toString());
             return true;
         } catch (IOException e) {
@@ -225,7 +229,7 @@ public class EsRestClient {
 
     private GetResponse get(GetRequest request) {
         try {
-            GetResponse response = restHighLevelClient.get(request, RequestOptions.DEFAULT);
+            GetResponse response = restHighLevelClient.get(request);
             return response;
         } catch (Exception e) {
             logger.error("sync put error,reason:", e);

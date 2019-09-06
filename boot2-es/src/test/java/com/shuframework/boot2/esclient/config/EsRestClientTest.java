@@ -116,10 +116,10 @@ public class EsRestClientTest {
         updateUserId.put("type", "text");
         Map<String, Object> createTime = new HashMap<>();
         createTime.put("type", "date");
-        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd");
+        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis");
         Map<String, Object> updateTime = new HashMap<>();
         updateTime.put("type", "date");
-        updateTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd");
+        updateTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis");
 
         //属性
         Map<String, Object> propertiesMap = new HashMap<>();
@@ -146,27 +146,27 @@ public class EsRestClientTest {
     @Test
     public void createIndex_test() {
 
-        Map<String, Object> id = new HashMap<>();
-        id.put("type", "integer");
+//        Map<String, Object> id = new HashMap<>();
+//        id.put("type", "integer");
         Map<String, Object> code = new HashMap<>();
         code.put("type", "text");
         Map<String, Object> name = new HashMap<>();
         name.put("type", "text");
-        Map<String, Object> price = new HashMap<>();
-        price.put("type", "float");
-        Map<String, Object> createTime = new HashMap<>();
-        createTime.put("type", "date");
-//        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd");
-        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis");
+//        Map<String, Object> price = new HashMap<>();
+//        price.put("type", "float");
+//        Map<String, Object> createTime = new HashMap<>();
+//        createTime.put("type", "date");
+////        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd");
+//        createTime.put("format", "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis");
 
         //属性
         Map<String, Object> propertiesMap = new HashMap<>();
-        propertiesMap.put("id", id);
+//        propertiesMap.put("id", id);
         propertiesMap.put("code", code);
         propertiesMap.put("name", name);
-        propertiesMap.put("price", price);
+//        propertiesMap.put("price", price);
 //        propertiesMap.put("priceBig", priceBig);
-        propertiesMap.put("createTime", createTime);
+//        propertiesMap.put("createTime", createTime);
 
         Map<String, Object> book = new HashMap<>();
         book.put("properties", propertiesMap);
